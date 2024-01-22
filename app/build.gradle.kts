@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.kotlinKsp)
     alias(libs.plugins.serialization)
+    alias(libs.plugins.secrets.gradle)
 }
 
 android {
@@ -72,6 +73,22 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.retrofit)
 
+    implementation(libs.maps.compose)
+
+    implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
+
+    // define a BOM and its version
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
+
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor")
+
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.7")
+
+
+
+
     // Testing dependencies
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -87,4 +104,9 @@ dependencies {
 // Allow references to generated code
 kapt {
     correctErrorTypes = true
+}
+
+secrets {
+    propertiesFileName = "secrets/secrets.properties"
+    defaultPropertiesFileName = "secrets/secrets.defaults.properties"
 }

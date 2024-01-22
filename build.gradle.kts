@@ -5,6 +5,13 @@ plugins {
     alias(libs.plugins.kotlinKsp) apply false
     alias(libs.plugins.serialization) apply false
     alias(libs.plugins.hilt) apply false
+    alias(libs.plugins.secrets.gradle) apply false
     alias(libs.plugins.ktlint)
     alias(libs.plugins.detekt)
+}
+
+buildscript {
+    dependencies {
+        classpath (libs.secrets.gradle)
+    }
 }
